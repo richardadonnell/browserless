@@ -8,6 +8,8 @@ RUN rm -r src/routes/
 COPY src/routes/management src/routes/management/
 COPY src/routes/chromium src/routes/chromium/
 
+RUN sed -i 's/bundles\/redoc.standalone.js/bundle\/redoc.standalone.js/g' static/docs/index.html
+
 RUN echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | debconf-set-selections && \
   apt-get -y -qq install software-properties-common &&\
   apt-add-repository "deb https://archive.canonical.com/ubuntu $(lsb_release -sc) partner" && \
